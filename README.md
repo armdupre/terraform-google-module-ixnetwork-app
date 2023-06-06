@@ -1,1 +1,1 @@
-# terraform-google-module-ixnetwork-app
+# module-ixnetwork-app/google
