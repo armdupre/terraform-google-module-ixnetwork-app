@@ -12,3 +12,9 @@ output "Image" {
 		"project" : data.google_compute_image.Image.project
 	}
 }
+
+output "Instance" {
+	value = {
+		"network_ip" : google_compute_instance.Instance.network_interface.0.network_ip 
+	}
+}

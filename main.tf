@@ -1,10 +1,3 @@
-resource "google_compute_address" "Eth0PublicIpAddress" {
-	name = local.Eth0PublicIpAddressName
-	region = local.RegionName
-	network_tier = "PREMIUM"
-	address_type = "EXTERNAL"
-}
-
 resource "google_compute_instance" "Instance" {
 	name = local.InstanceName
 	zone = local.ZoneName
@@ -19,7 +12,6 @@ resource "google_compute_instance" "Instance" {
 	allow_stopping_for_update = true
 	network_interface {
 		network = data.google_compute_network.Eth0VpcNetwork.self_link
-		network_ip = local.Eth0PrivateIpAddress
 		subnetwork = data.google_compute_subnetwork.Eth0Subnet.self_link
 		access_config {
 			nat_ip = google_compute_address.Eth0PublicIpAddress.address
@@ -35,4 +27,11 @@ resource "google_compute_instance" "Instance" {
 		owner = replace(replace(local.UserEmailTag, ".", "-"), "@", "-")
 		project = lower(local.UserProjectTag)
 	}
+}
+
+resource "google_compute_address" "Eth0PublicIpAddress" {
+	name = local.Eth0PublicIpAddressName
+	region = local.RegionName
+	network_tier = "PREMIUM"
+	address_type = "EXTERNAL"
 }

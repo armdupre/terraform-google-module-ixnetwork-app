@@ -1,8 +1,3 @@
-variable "AppName" {
-	default = "ixnetwork"
-	type = string
-}
-
 variable "CustomImageFamilyName" {
 	default = "ixnetwork-cloud-gcp-9-30-2212-7"
 	description = "Group of images to which image belongs"
@@ -15,21 +10,19 @@ variable "CustomImageProjectId" {
 	type = string
 }
 
-variable "Eth0PrivateIpAddress" {
-	default = "10.0.10.10"
-	type = string
-}
-
 variable "Eth0SubnetName" {
+	description = "Name of the subnet associated with the first network interface"
 	type = string
 }
 
 variable "Eth0VpcNetworkName" {
+	description = "Name of the virtual private cloud associated with the first network interface"
 	type = string
 }
 
 variable "InstanceId" {
 	default = "app"
+	description = "Id of the instance of this module that ensures uniqueness"
 	type = string
 }
 
@@ -43,9 +36,23 @@ variable "MachineType" {
 	}
 }
 
+variable "NetworkTargetTags" {
+	default = [
+		"ixnetwork-app"
+	]
+	description = "Network tags make firewall rules and routes applicable to specific VM instances."
+	type = list(string)
+}
+
 variable "RegionName" {
 	default = "us-central1"
 	description = "Geographical location where resources can be hosted" 
+	type = string
+}
+
+variable "Tag" {
+	default = "ixnetwork"
+	description = "App ID tag of application using the deployment"
 	type = string
 }
 
@@ -53,17 +60,31 @@ variable "UserEmailTag" {
 	default = "terraform@example.com"
 	description = "Email address tag of user creating the deployment"
 	type = string
+	validation {
+		condition = length(var.UserEmailTag) >= 14
+		error_message = "UserEmailTag minimum length must be >= 14."
+	}
 }
 
 variable "UserLoginTag" {
 	default = "terraform"
 	description = "Login ID tag of user creating the deployment"
 	type = string
+	validation {
+		condition = length(var.UserLoginTag) >= 4
+		error_message = "UserLoginTag minimum length must be >= 4."
+	}
 }
 
 variable "UserProjectTag" {
-	default = "example"
+	default = "module"
 	description = "Project tag of user creating the deployment"
+	type = string
+}
+
+variable "Version" {
+	default = "9-30"
+	description = "Versioning of the application using the deployment"
 	type = string
 }
 
