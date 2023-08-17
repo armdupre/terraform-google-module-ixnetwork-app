@@ -14,6 +14,6 @@ locals {
 	UserEmailTag = var.UserEmailTag
 	UserLoginTag = var.UserLoginTag
 	UserProjectTag = var.UserProjectTag
-	ZoneName = var.ZoneName
 	Version = var.Version
+	ZoneName = var.ZoneName
 }
