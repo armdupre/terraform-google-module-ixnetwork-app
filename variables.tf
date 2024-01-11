@@ -1,5 +1,5 @@
 variable "CustomImageFamilyName" {
-	default = "ixnetwork-cloud-gcp-9-36-2306-4"
+	default = "ixnetwork-cloud-gcp-10-00-2312-4"
 	description = "Group of images to which image belongs"
 	type = string
 }
@@ -83,7 +83,7 @@ variable "UserProjectTag" {
 }
 
 variable "Version" {
-	default = "9-36"
+	default = "10-00"
 	description = "Versioning of the application using the deployment"
 	type = string
 }
