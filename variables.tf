@@ -1,15 +1,3 @@
-variable "CustomImageFamilyName" {
-	default = "ixnetwork-cloud-gcp-10-40-2406-3"
-	description = "Group of images to which image belongs"
-	type = string
-}
-
-variable "CustomImageProjectId" {
-	default = "ixvm-261016"
-	description = "Globally unique identifier for image source project"
-	type = string
-}
-
 variable "Eth0SubnetName" {
 	description = "Name of the subnet associated with the first network interface"
 	type = string
@@ -34,6 +22,18 @@ variable "MachineType" {
 		condition = can(regex("n1-standard-8", var.MachineType)) || can(regex("n1-standard-4", var.MachineType))
 		error_message = "MachineType must be one of (n1-standard-8 | n1-standard-4) types."
 	}
+}
+
+variable "MarketplaceImageName" {
+	default = "ixnetwork-cloud-gcp-11-00-2504-10"
+	description = "Identifier for image"
+	type = string
+}
+
+variable "MarketplaceImageProjectId" {
+	default = "mpi-keysight-public"
+	description = "Globally unique identifier for image source project"
+	type = string
 }
 
 variable "NetworkTargetTags" {
@@ -83,7 +83,7 @@ variable "UserProjectTag" {
 }
 
 variable "Version" {
-	default = "10-40"
+	default = "11-00"
 	description = "Versioning of the application using the deployment"
 	type = string
 }
