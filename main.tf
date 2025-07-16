@@ -10,6 +10,7 @@ resource "google_compute_instance" "Instance" {
 		}
 	}
 	allow_stopping_for_update = true
+	enable_display = true
 	network_interface {
 		network = data.google_compute_network.Eth0VpcNetwork.self_link
 		subnetwork = data.google_compute_subnetwork.Eth0Subnet.self_link
